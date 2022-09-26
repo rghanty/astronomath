@@ -2,6 +2,8 @@ package UI;
 
 import Model.Question;
 import Model.Quiz;
+import Persistence.JsonReader;
+import Persistence.JsonWriter;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -12,6 +14,7 @@ import java.util.Scanner;
 public class QuizConsole {
     private final Scanner input = new Scanner(System.in);
     private Quiz quiz;
+    private int starNum;
     private static final String DESTINATION = "./data/constellations.json";
     private JsonReader reader = new JsonReader(DESTINATION);
     private JsonWriter writer = new JsonWriter(DESTINATION);
@@ -124,9 +127,7 @@ public class QuizConsole {
     }
 
 
-    public void accessQuiz() {
 
-    }
 
     public void displayMenu() {
         boolean keepDisplay = true;
@@ -140,6 +141,7 @@ public class QuizConsole {
                     createQuiz();
                     initiateQuiz();
                     seeQuiz();
+                    displayEndingMenu();
                     keepDisplay = false;
                     break;
                 case "l" : loadConstellation();
@@ -356,6 +358,7 @@ public class QuizConsole {
                 quiz.incrementScore(question.getNumAttempts());
                 System.out.println("You got it!!");
                 System.out.println("A star has been added to the night sky!!");
+                starNum++;
                 break;
             } else {
                 question.incrementCurrentAttempts();

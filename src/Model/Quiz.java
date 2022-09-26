@@ -1,5 +1,9 @@
 package Model;
-import java.util.*;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 public class Quiz {
     private int finalScore;
@@ -18,18 +22,11 @@ public class Quiz {
     }
 
     public ArrayList<String> getFeedBack(int level) {
-        switch (level) {
-            case 1: ArrayList<String> feedback1 = feedbacks.get(1);
-                return feedback1;
-            case 2:  ArrayList<String> feedback2  = feedbacks.get(2);
-                return feedback2;
-            case 3:  ArrayList<String> feedback3  = feedbacks.get(3);
-                return feedback3;
-            case 4: ArrayList<String> feedback4  = feedbacks.get(4);
-                return feedback4;
-            case 5 :  ArrayList<String> feedback5  = feedbacks.get(5);
-                return feedback5;
-            default: throw new NoSuchElementException(); // runtime exception
+        ArrayList<String> retArray = new ArrayList<>();
+        for (int i : feedbacks.keySet()) {
+            if (i == level) {
+                retArray = feedbacks.get(i);
+            }
         }
         return retArray;
     }
